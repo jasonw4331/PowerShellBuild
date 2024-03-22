@@ -96,6 +96,9 @@ $moduleVersion = (Import-PowerShellDataFile -Path $env:BHPSModuleManifest).Modul
             # The code coverage output format to use
             OutputFileFormat = 'JaCoCo'
         }
+
+        # Tags to exclude from Pester tests
+        ExcludedTags   = @()
     }
     Help  = @{
         # Path to updateable help CAB

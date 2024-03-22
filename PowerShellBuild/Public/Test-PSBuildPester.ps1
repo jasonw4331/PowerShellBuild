@@ -54,7 +54,9 @@ function Test-PSBuildPester {
 
         [string]$CodeCoverageOutputFileFormat = 'JaCoCo',
 
-        [switch]$ImportModule
+        [switch]$ImportModule,
+
+        [string[]]$ExcludedTags = @()
     )
 
     if (-not (Get-Module -Name Pester)) {
@@ -90,6 +92,8 @@ function Test-PSBuildPester {
             $configuration.CodeCoverage.OutputPath   = $CodeCoverageOutputFile
             $configuration.CodeCoverage.OutputFormat = $CodeCoverageOutputFileFormat
         }
+
+        $configuration.Filter.ExcludeTag = $ExcludedTags
 
         $testResult = Invoke-Pester -Configuration $configuration -Verbose:$VerbosePreference
 
